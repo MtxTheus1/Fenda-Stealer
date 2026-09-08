@@ -6,10 +6,10 @@
 
 [![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
-[![License](https://img.shields.io/github/license/MtxTheus1/fendastealer?style=for-the-badge)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
-[![Forks](https://img.shields.io/github/forks/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
-[![Issues](https://img.shields.io/github/issues/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![License](https://img.shields.io/github/license/MtxTheus1/Fenda-Stealer?style=for-the-badge)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![Forks](https://img.shields.io/github/forks/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![Issues](https://img.shields.io/github/issues/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
 [![Educational Only](https://img.shields.io/badge/Educational-Only-red?style=for-the-badge)]()
 [![Author](https://img.shields.io/badge/Author-MtxTheus1-blue?style=for-the-badge)](https://github.com/MtxTheus1)
 
