@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🕷️ FENDASTEALER
+# FENDASTEALER
 
 **Windows information-stealer — educational security research project**
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 📋 What is this?
+## What is this?
 
 `fendastealer.py` is a **Windows-only, single-file Python stealer** written to be easy to read
 and study. It collects browser credentials and session data, system information, WiFi keys,
@@ -44,7 +44,7 @@ through a configurable channel (Telegram bot → GoFile → Discord webhook fall
 
 It runs **without administrator rights** — elevation only enables *extra* capabilities.
 
-## 🧬 Collected data
+## Collected data
 
 | Category | Details |
 |---|---|
@@ -58,7 +58,7 @@ It runs **without administrator rights** — elevation only enables *extra* capa
 | Messaging/FTP | Telegram `tdata`, FileZilla/WinSCP profiles |
 | Artifacts | **screenshot**, **webcam capture**, clipboard text, "interesting files" (Desktop/Downloads/Documents) filtered by keywords (seed phrases, passwords, 2FA, bank…) |
 
-## ⚙️ How it works
+## How it works
 
 ```
 run
@@ -82,7 +82,7 @@ run
 | Run from the Startup copy | does **not** delete itself (keeps persistence alive) |
 | Run as `.py` / `--test` | no self-destruct, no persistence |
 
-## 📁 Project layout
+## Project layout
 
 ```
 fendastealer/
@@ -99,7 +99,7 @@ fendastealer/
 └── README.md                  # you are here
 ```
 
-## 🚀 Getting started (local lab)
+## Getting started (local lab)
 
 > Test **only** on machines you own, in a VM, with a throwaway Telegram bot/webhook.
 
@@ -148,7 +148,7 @@ python src\fendastealer.py --test
 indicators *would* have fired — useful to learn the anti-analysis logic. Expect the ZIP
 in your Telegram chat.
 
-## 🛡️ Anti-analysis & evasion (study notes)
+## Anti-analysis & evasion (study notes)
 
 - **Sandbox/VM checks**: known VM DLLs, MAC prefixes (VMware, VirtualBox, QEMU/KVM,
   Hyper-V), low RAM/CPU, boot uptime < 60 s, tiny screen resolution, no user input for 3 h+.
@@ -165,7 +165,7 @@ in your Telegram chat.
 final build, target AV/EDR, and runtime behavior. Real-world "FUD" is a moving target —
 this repo is for *understanding* the arms race, not for winning it permanently.
 
-## 📚 Resources
+## Resources
 
 - [MITRE ATT&CK — T1555 Credentials from Password Stores](https://attack.mitre.org/techniques/T1555/)
 - [MITRE ATT&CK — T1056 Input Capture](https://attack.mitre.org/techniques/T1056/)
