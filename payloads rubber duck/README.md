@@ -1,4 +1,4 @@
-# 🦆 Rubber Ducky — payloads FendaStealer
+# Rubber Ducky — payloads FendaStealer
 
 Esta pasta contém os payloads de **keystroke injection** para o **USB Rubber Ducky (Hak5)**,
 usados para entregar o `fendastealer` num alvo Windows via um comando curto no `Win+R`.
