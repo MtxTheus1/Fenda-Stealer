@@ -1,15 +1,15 @@
 <div align="center">
 
-# 🕷️ FENDASTEALER
+# FENDASTEALER
 
 **Furtador de informações para Windows — projeto educacional de pesquisa em segurança**
 
 [![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
-[![License](https://img.shields.io/github/license/MtxTheus1/fendastealer?style=for-the-badge)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
-[![Forks](https://img.shields.io/github/forks/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
-[![Issues](https://img.shields.io/github/issues/MtxTheus1/fendastealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![License](https://img.shields.io/github/license/MtxTheus1/Fenda-Stealer?style=for-the-badge)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![Forks](https://img.shields.io/github/forks/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
+[![Issues](https://img.shields.io/github/issues/MtxTheus1/Fenda-Stealer?style=for-the-badge)](https://github.com/MtxTheus1/fendastealer)
 [![Educational Only](https://img.shields.io/badge/Educacional-Somente-red?style=for-the-badge)]()
 [![Author](https://img.shields.io/badge/Autor-MtxTheus1-blue?style=for-the-badge)](https://github.com/MtxTheus1)
 
@@ -33,7 +33,7 @@
 
 ---
 
-## 📋 O que é
+## O que é
 
 `fendastealer.py` é um stealer **Windows-only de arquivo único**, escrito para ser fácil de
 ler e estudar. Ele coleta credenciais e sessões de navegadores, informações do sistema,
@@ -42,7 +42,7 @@ exfiltra por um canal configurável (bot do Telegram → GoFile → webhook do D
 
 Funciona **sem privilégios de administrador** — elevação só habilita capacidades *extras*.
 
-## 🧬 Dados coletados
+## Dados coletados
 
 | Categoria | Detalhes |
 |---|---|
@@ -56,7 +56,7 @@ Funciona **sem privilégios de administrador** — elevação só habilita capac
 | Mensageiros/FTP | `tdata` do Telegram, perfis FileZilla/WinSCP |
 | Artefatos | **screenshot**, **webcam**, clipboard, "arquivos interessantes" (Desktop/Downloads/Documents) filtrados por palavras-chave (seed phrases, senhas, 2FA, banco…) |
 
-## ⚙️ Como funciona
+## Como funciona
 
 ```
 execução
@@ -80,7 +80,7 @@ execução
 | Execução a partir da cópia da Startup | **não** se apaga (mantém a persistência) |
 | Execução como `.py` / `--test` | sem autodestruição e sem persistência |
 
-## 📁 Estrutura do projeto
+## Estrutura do projeto
 
 ```
 fendastealer/
@@ -146,7 +146,7 @@ O `--test` pula persistência e checks de sandbox/debugger, e imprime quais indi
 sandbox *disparariam* — ótimo para estudar a lógica anti-análise. O ZIP deve chegar no seu
 chat do Telegram.
 
-## 🛡️ Anti-análise e evasão (notas de estudo)
+## Anti-análise e evasão (notas de estudo)
 
 - **Checks de sandbox/VM**: DLLs de VM conhecidas, prefixos de MAC (VMware, VirtualBox,
   QEMU/KVM, Hyper-V), RAM/CPU baixos, uptime < 60 s, resolução de tela pequena, ausência
@@ -164,7 +164,7 @@ depende do build final, do AV/EDR alvo e do comportamento em execução. "FUD" n
 é um alvo móvel — este repo serve para *entender* a corrida armamentista, não para vencê-la
 para sempre.
 
-## 📚 Referências
+## Referências
 
 - [MITRE ATT&CK — T1555 Credentials from Password Stores](https://attack.mitre.org/techniques/T1555/)
 - [MITRE ATT&CK — T1056 Input Capture](https://attack.mitre.org/techniques/T1056/)
