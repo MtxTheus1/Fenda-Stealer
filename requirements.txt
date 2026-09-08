@@ -1,0 +1,28 @@
+# requirements.txt - howtofish_v2.py (build do photoshop.exe)
+# Runtime (imports diretos do codigo):
+browser-cookie3==0.20.1
+certifi==2025.11.12
+cryptography==46.0.3
+numpy==2.2.6
+opencv-python==4.12.0.88
+pillow==11.1.0
+psutil==7.2.1
+pycryptodomex==3.23.0
+pywin32==311
+requests==2.32.5
+
+# Build (Nuitka + deps do compilador):
+Nuitka==4.2.1
+ordered-set==4.1.0
+zstandard==0.25.0
+
+# Transitives obrigatorias:
+cffi==2.0.0
+charset-normalizer==3.4.4
+idna==3.11
+lz4==4.4.5
+pycparser==2.23
+urllib3==2.6.2
+
+# Instalar:  & '.venv\Scripts\python.exe' -m pip install -r requirements.txt
+# Build:     powershell -ExecutionPolicy Bypass -File build_nuitka.ps1

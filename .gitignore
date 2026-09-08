@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.exe
+*.png
+.nuitka_cache/
+howtofish_v2.build/
+howtofish_v2.dist/
+fendastealer.build/
+fendastealer.dist/
+fendastealer.onefile-build/
