@@ -9,3 +9,11 @@ howtofish_v2.dist/
 fendastealer.build/
 fendastealer.dist/
 fendastealer.onefile-build/
+build_antiga/
+# duck: sobe o codigo/README, mas NAO os payloads/stages reais (tem URLs/senha)
+payloads rubber duck/TESTE.txt
+payloads rubber duck/TESTE.duck
+payloads rubber duck/FINAL.txt
+payloads rubber duck/FINAL.duck
+payloads rubber duck/stage_aes.ps1
+payloads rubber duck/stage_aes_test.ps1

